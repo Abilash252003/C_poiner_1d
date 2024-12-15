@@ -1,0 +1,76 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+
+int sum(int a, int b)
+{
+    int sum = a+b;
+    return sum;
+}
+
+int sub(int a, int b)
+{
+    int sub = a-b;
+    return sub;
+}
+
+int mul(int a, int b)
+{
+    int mul = a*b;
+    return mul;
+}
+
+int divi(int a, int b)
+{
+    int divi = b/a;
+    return divi;
+}
+
+int* max(int*a, int*b, int*res)
+{
+    *res = (*a>*b)?*a:*b;
+    return res;
+}
+
+int main()
+{
+    //1d array various types
+    
+    int a[3] = {1,2,3};
+    int*ptr1 = &(a[0]);                           //pointer to integer
+    int*ptr2[3] = {&a[0],&a[1],&a[2]};            //array of pointers
+    for(int i=0; i<3; i++)
+    {
+        printf("%d\n",*ptr2[i]);
+    }
+    printf("%d\n",*ptr1);
+    printf("%d\n",*++ptr1);
+    printf("%d\n",*++ptr1);
+    
+    int(*ptr)[3] = &a;                            //pointer to whole array
+    for (int i = 0; i < 3; i++)
+        printf("%d ", (*ptr)[i]);
+        
+    int x = 100;
+    int y = 200;
+    
+    int (*ptrf)(int, int) = &sum;                  //function pointer
+    int sum = (*ptrf)(x,y);
+    printf("\n%d",sum);
+    
+    int ch=0;
+    int (*ptrfs[3])(int,int) = {&sub,&mul,&divi};  //array of function pointer
+    printf("\n%d",(*ptrfs[ch++])(x,y));   
+    printf("\n%d",(*ptrfs[ch++])(x,y));
+    printf("\n%d",(*ptrfs[ch++])(x,y));
+    
+    int res;
+    int* ret_ptr = max(&x, &y, &res);             //passing and returning pointer
+    printf("\n%d",*ret_ptr);
+}
