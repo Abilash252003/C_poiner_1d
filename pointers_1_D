@@ -32,10 +32,10 @@ int divi(int a, int b)
     return divi;
 }
 
-int* max(int*a, int*b, int*res)
+int* max(int*a, int*b, int**res)
 {
-    *res = (*a>*b)?*a:*b;
-    return res;
+    **res = (*a>*b)?*a:*b;
+    return *res;
 }
 
 int main()
@@ -71,6 +71,9 @@ int main()
     printf("\n%d",(*ptrfs[ch++])(x,y));
     
     int res;
-    int* ret_ptr = max(&x, &y, &res);             //passing and returning pointer
+    int *o = &res;
+    int* ret_ptr = max(&x, &y, &o);             //passing and returning pointer
     printf("\n%d",*ret_ptr);
+    //pass -- address always
+    //     -- if you pass pointer, it will create copy in function (see for res)
 }
